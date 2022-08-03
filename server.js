@@ -4,6 +4,8 @@ const cors = require('cors')
 const app = express();
 require("dotenv").config();
 const productController = require("./routes/product");
+const orderController = require("./routes/order")
+const register = require("./routes/register&signin")
 //console.log(productController)
 app.use(cors());
 app.use(express.json());
@@ -25,7 +27,10 @@ mongoose.connect(laundryDB,(data)=>{
     console.log(err)
 });
 
+
+app.use("/",register);
 app.use("/product",productController);
+app.use("/order", orderController);
 
 app.get("/",(req,res)=>{
     res.status(200).send("Laundry app")
