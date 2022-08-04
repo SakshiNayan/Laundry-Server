@@ -28,7 +28,7 @@ mongoose.connect(laundryDB,(data)=>{
 });
 
 
-app.use("/",register);
+app.use("/userRegister",register);
 app.use("/product",productController);
 app.use("/order", orderController);
 
