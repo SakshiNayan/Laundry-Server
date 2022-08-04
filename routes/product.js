@@ -45,15 +45,15 @@ router.post("/create-order",(req,res)=>{
     })
 })
 
-router.get("/user",(req,res)=>{
-    productModal.find().then((data)=>{
-        if(data.length){
-            res.status(200).send(data)
-        }
-    }).catch((err)=>{
-        res.status(400).send(err)
-    })
-});
+// router.get("/user",(req,res)=>{
+//     productModal.find().then((data)=>{
+//         if(data.length){
+//             res.status(200).send(data)
+//         }
+//     }).catch((err)=>{
+//         res.status(400).send(err)
+//     })
+// });
 
 // router.patch("/OrderStatus", (req,res)=>{
 //     const orderStatus = orders.updateOne({
