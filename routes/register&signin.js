@@ -2,7 +2,9 @@ const express=require("express")
 const bcrypt=require("bcrypt")
 const router=express.Router()
 const jwt=require("jsonwebtoken")
-const Users=require('../Modals/register-modal')
+
+const Users=require('../Modals/register-modal.js')
+
 const salt=10
 
 router.post("/Register",async(req,res)=>{
@@ -67,7 +69,8 @@ router.post("/Register",async(req,res)=>{
              if(data){
               //generating token
                  const Authtoken=jwt.sign(signindata[0].Email,process.env.SECRET_KEY)
-                 res.status(200).send({Authtoken})
+                 const username = signindata[0].Name
+                 res.status(200).send({Authtoken: Authtoken, username: username})
               }
               else{
                  res.status(400).send("Invalid password")
@@ -76,6 +79,14 @@ router.post("/Register",async(req,res)=>{
           else{
             res.status(400).send(`Invalid User`)
           }
+    })
+
+    router.get("/user",(req,res)=>{
+      Users.find().then((data)=>{
+        res.status(200).send({user: data});
+      }).catch((err)=>{
+        res.status(400).send(err);
+      })
     })
 
     module.exports=router
