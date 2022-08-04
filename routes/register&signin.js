@@ -2,7 +2,9 @@ const express=require("express")
 const bcrypt=require("bcrypt")
 const router=express.Router()
 const jwt=require("jsonwebtoken")
+
 const Users=require('../Modals/register-modal.js')
+
 const salt=10
 
 router.post("/Register",async(req,res)=>{
