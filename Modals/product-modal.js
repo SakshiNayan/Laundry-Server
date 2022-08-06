@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
         required: true,
     },
     storeInfo:{
-        type: String,
+        type: Object,
         required: true,
     },
     userAddress: {
@@ -26,7 +26,7 @@ const productSchema = new mongoose.Schema({
         required: true,
     },
     items:{
-        type : String,
+        type : Array,
         required: true,
     },
     price:{

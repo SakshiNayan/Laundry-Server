@@ -57,13 +57,17 @@ router.post("/Register",async(req,res)=>{
 
     router.post("/Signin",async(req,res)=>{
       let USER=""
-      if(typeof(req.body.User)==="number"){
+      // console.log(isNaN(req.body.User))
+      if(isNaN(req.body.User)===false){
         USER="Phone"
+        console.log("working")
       }else{
          USER="Email"
+         console.log("email")
       }
       
       const signindata= await Users.find({[USER]:req.body.User})
+      // console.log(signindata)
          if(signindata.length){
            const data= await bcrypt.compare(req.body.Password,signindata[0].Password)
              if(data){
@@ -82,11 +86,18 @@ router.post("/Register",async(req,res)=>{
     })
 
     router.get("/user",(req,res)=>{
-      Users.find().then((data)=>{
-        res.status(200).send({user: data});
-      }).catch((err)=>{
-        res.status(400).send(err);
-      })
+      try {
+        const user = jwt.verify(req.headers.authorization, process.env.SECRET_KEY );
+        Users.find({Email : user}).then((data)=>{
+          // console.log(data)
+          res.status(200).send({user: data});
+        }).catch((err)=>{
+          res.status(400).send(err);
+        })
+    } catch(err) {
+        res.status(400).send("Unauthorize user", err)
+    }  
+  
     })
 
     module.exports=router
