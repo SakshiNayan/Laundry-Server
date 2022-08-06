@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.listen(3001,(err)=>{
+app.listen(process.env.PORT || 3001,(err)=>{
     if(!err){
         console.log("Server connected succesfully at 3001")
     }
