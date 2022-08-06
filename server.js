@@ -20,7 +20,7 @@ app.listen(3001,(err)=>{
     }
 });
 //mongodb+srv://Sakshi09:test123@instaclone.gwk4cly.mongodb.net/laundry?retryWrites=true&w=majority
-const laundryDB= "mongodb://localhost/Laundry"
+const laundryDB= "mongodb+srv://Sakshi09:test123@instaclone.gwk4cly.mongodb.net/laundry?retryWrites=true&w=majority"
 mongoose.connect(laundryDB,(data)=>{
     console.log("Successfully connect to db")
 },(err)=>{
