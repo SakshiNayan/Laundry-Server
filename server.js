@@ -8,7 +8,7 @@ const orderController = require("./routes/order")
 const register = require("./routes/register&signin")
 //console.log(productController)
 app.use(cors());
-app.use(express.json({limit:"30mb",extended:true}))
+app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.listen(process.env.PORT || 3001,(err)=>{
@@ -20,17 +20,17 @@ app.listen(process.env.PORT || 3001,(err)=>{
     }
 });
 //mongodb+srv://Sakshi09:test123@instaclone.gwk4cly.mongodb.net/laundry?retryWrites=true&w=majority
-const laundryDB= "mongodb+srv://Sakshi09:test123@instaclone.gwk4cly.mongodb.net/laundry?retryWrites=true&w=majority"
-mongoose.connect(laundryDB,(data)=>{
+const laundryDB= "mongodb+srv://Ashindeedu:ashin123@ashinmk.rxye7.mongodb.net/Laundry?retryWrites=true&w=majority"
+mongoose.connect(laundryDB,()=>{
     console.log("Successfully connect to db")
 },(err)=>{
     console.log(err)
 });
 
 
-app.use("/userRegister",register);
-app.use("/product",productController);
-app.use("/order", orderController);
+app.use("/",register);
+app.use("/",productController);
+app.use("/", orderController);
 
 app.get("/",(req,res)=>{
     res.status(200).send("Laundry app")

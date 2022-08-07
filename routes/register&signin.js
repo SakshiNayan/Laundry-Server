@@ -60,10 +60,8 @@ router.post("/Register",async(req,res)=>{
       // console.log(isNaN(req.body.User))
       if(isNaN(req.body.User)===false){
         USER="Phone"
-        console.log("working")
       }else{
          USER="Email"
-         console.log("email")
       }
       
       const signindata= await Users.find({[USER]:req.body.User})

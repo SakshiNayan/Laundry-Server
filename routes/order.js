@@ -8,7 +8,7 @@ router.get("/create-order", (req, res)=> {
 // console.log(req.headers);
     try {
         const user = jwt.verify(req.headers.authorization, process.env.SECRET_KEY );
-        productModal.find({Email:user}).then((data)=>{
+        productModal.find({userId:user}).then((data)=>{
             res.status(200).send(data)
         }).catch((err)=>{
             res.status(400).send(err);
@@ -24,7 +24,6 @@ router.get("/create-order", (req, res)=> {
 
 router.delete("/cancel/:id",(req, res)=> {
     productModal.deleteOne({orderId: req.params.id}).then(()=> {
-        console.log("order deleted succesfully")
         res.status(200).send("Order Cancelled Sucessfully")
     }).catch((err)=> {
         console.log(err);
