@@ -19,7 +19,7 @@ app.listen(process.env.PORT || 3001,(err)=>{
         console.log(err)
     }
 });
-//mongodb+srv://Sakshi09:test123@instaclone.gwk4cly.mongodb.net/laundry?retryWrites=true&w=majority
+//mongodb+srv://Sakshi09:test123@instaclone.gwk4cly.mongodb.net/laundry?retryWrites=true&w=majority  "mongodb://localhost/laundry"
 const laundryDB= "mongodb+srv://Sakshi09:test123@instaclone.gwk4cly.mongodb.net/laundry?retryWrites=true&w=majority"
 mongoose.connect(laundryDB,(data)=>{
     console.log("Successfully connect to db")
